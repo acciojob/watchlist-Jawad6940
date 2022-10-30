@@ -25,9 +25,9 @@ public class MovieRepository {
             return null;
         }
     }
-        public List<Movie> findAllMoviesRepo () {
-            List<Movie> list = new ArrayList<>();
-            for (Movie movie : movieHm.values()
+        public List<String> findAllMoviesRepo () {
+            List<String> list = new ArrayList<>();
+            for (String movie : movieHm.keySet()
             ) {
                 list.add(movie);
 
@@ -58,15 +58,7 @@ public class MovieRepository {
     }
 
 
-    public List<Director> findAllDirectorsRepo() {
-        List<Director> list= new ArrayList<>();
-        for (Director director: directorHm.values()
-        ) {
-            list.add(director);
 
-        }
-        return list;
-    }
 
 
     public void deleteDirector(String directorName) {

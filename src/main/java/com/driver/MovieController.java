@@ -9,30 +9,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("movies")
 public class MovieController {
     @Autowired
-    private MovieService movieService;
+     MovieService movieService;
     //movie only
     @PostMapping("/add-movie")
     public ResponseEntity addMovie(@RequestBody() Movie movie){
         movieService.addMovieService(movie);
         return new ResponseEntity<>("Success", HttpStatus.CREATED);
     }
-//    @PostMapping("/add-movies")
-//    public ResponseEntity addMovies(@RequestBody() List<Movie> movie){
-//        for (Movie curr:movie
-//        ) {
-//            movieService.addMovieService(curr);
-//        }
-//        return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
-//    }
+
     @GetMapping("/get-movie-by-name/{name}")
-    public ResponseEntity getMovieByName(@PathVariable("name") String name){
+    public ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name){
         return new ResponseEntity<>(movieService.getMovieByNameService(name), HttpStatus.OK);
     }
     @GetMapping("/get-all-movies")
-    public ResponseEntity findAllMovies(){
+    public ResponseEntity<List<String>> findAllMovies(){
         return new ResponseEntity<>(movieService.findAllMoviesService(),HttpStatus.FOUND);
     }
 
@@ -45,22 +38,12 @@ public class MovieController {
         movieService.addDirectorService(director);
         return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
     }
-    @PostMapping("/add-directors")
-    public ResponseEntity addDirectors(@RequestBody() List<Director> director){
-        for (Director curr:director
-        ) {
-            movieService.addDirectorService(curr);
-        }
-        return new ResponseEntity<>("Success", HttpStatus.ACCEPTED);
-    }
+
     @GetMapping("/get-director-by-name/{name}")
-    public ResponseEntity getDirectorByName(@PathVariable("name") String name){
+    public ResponseEntity<Director> getDirectorByName(@PathVariable("name") String name){
         return new ResponseEntity<>(movieService.getDirectorByNameService(name), HttpStatus.OK);
     }
-    @GetMapping("/get-all-directors")
-    public ResponseEntity findAllDirectors(){
-        return new ResponseEntity<>(movieService.findAllDirectorsService(),HttpStatus.FOUND);
-    }
+
 
     //pair
     @GetMapping("/get-movies-by-director-name/{director}")

@@ -23,7 +23,7 @@ public class MovieService {
     }
 
 
-    public List<Movie> findAllMoviesService() {
+    public List<String> findAllMoviesService() {
         return movieRepository.findAllMoviesRepo();
     }
 
@@ -38,9 +38,6 @@ public class MovieService {
     }
 
 
-    public List<Director> findAllDirectorsService() {
-        return movieRepository.findAllDirectorsRepo();
-    }
 
     public void addMovieDirectorPairService(String movieName, String directorName) {
         movieRepository.addMovieDirectorPairRepo(movieName, directorName);
